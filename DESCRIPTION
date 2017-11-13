@@ -1,0 +1,10 @@
+Package: dyncomp
+Type: Package
+Title: Complexity of Short and Coarse-grained Time Series
+Version: 0.0.1-5
+Author: Tim Kaiser
+Maintainer: Tim Kaiser <Tim.Kaiser@sbg.ac.at>
+Depends: zoo
+Description: While there are many well-established measures for identifying critical fluctuations and phase transitions, these measures only work with many points of measurement and thus are unreliable when studying short and coarse-grained time series. This package provides a measure for complexity in a time series that does not rely on long time series.
+License: MIT
+LazyData: TRUE
