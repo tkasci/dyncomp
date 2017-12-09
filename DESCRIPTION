@@ -6,6 +6,6 @@ Author: Tim Kaiser
 Maintainer: Tim Kaiser <Tim.Kaiser@sbg.ac.at>
 Depends: zoo
 Description: While there are many well-established measures for identifying critical fluctuations and phase transitions, these measures only work with many points of measurement and thus are unreliable when studying short and coarse-grained time series. This package provides a measure for complexity in a time series that does not rely on long time series.
-License: MIT
+License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 6.0.1

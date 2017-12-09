@@ -39,32 +39,12 @@ If TRUE, rescales the returned values to scale minimum and maximum. This is some
 }
 
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Tim Kaiser <Tim.Kaiser@sbg.ac.at>
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 t <- runif(100, 0, 10)
 c <- complexity(x = t, scaleMin = 0, scaleMax = 10, width = 5, measure = "complexity",

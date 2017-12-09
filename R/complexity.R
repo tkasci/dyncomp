@@ -1,7 +1,8 @@
 require(zoo) # for rollapply
-#require(dplyr)
 
 complexity <- function(x, scaleMin = min(x, na.rm = T), scaleMax = max(x, na.rm = T), width = 7, measure = "complexity", rescale = FALSE) {
+
+
 
 if(!is.numeric(x)){return("Please provide a numeric vector.")}
 
