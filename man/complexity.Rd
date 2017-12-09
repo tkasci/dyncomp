@@ -9,9 +9,9 @@ Calculate dynamic complexity of time series
 A function to calculate the dynamic complexity of a series of observations, resulting from the degree of fluctuation and the degree of scattering. This measure is calculated in moving windows of a specified width, resulting in a series of values of a length equal to the length of the series of observations.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
-\usage{
-complexity(x, scaleMin, scaleMax, width = 7, measure = "complexity", rescale = FALSE)
-%- maybe also 'usage' for other objects documented here.
+
+\usage{complexity(x, scaleMin, scaleMax, width = 7, measure = "complexity", rescale = FALSE)}
+
 \arguments{
   \item{x}{
   The data to be used (representing a series of observations).
@@ -53,7 +53,7 @@ If TRUE, rescales the returned values to scale minimum and maximum. This is some
 %% ~put references to the literature/web site here ~
 }
 \author{
-Tim Kaiser
+Tim Kaiser <Tim.Kaiser@sbg.ac.at>
 %%  ~~who you are~~
 }
 \note{
