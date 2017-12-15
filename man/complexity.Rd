@@ -8,6 +8,7 @@ Calculate dynamic complexity of time series
 \description{
 A function to calculate the dynamic complexity of a series of observations, resulting from the degree of fluctuation and the degree of scattering. This measure is calculated in moving windows of a specified width, resulting in a series of values of a length equal to the length of the series of observations.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
+
 }
 
 \usage{complexity(x, scaleMin, scaleMax, width = 7, measure = "complexity", rescale = FALSE)}
@@ -44,6 +45,8 @@ If TRUE, rescales the returned values to scale minimum and maximum. This is some
 Tim Kaiser <Tim.Kaiser@sbg.ac.at>
 %%  ~~who you are~~
 }
+
+\references{Kaiser, T. (2017). dyncomp: an R package for Estimating the Complexity of Short Time Series. DOI 10.17605/OSF.IO/GWTKX}
 
 \examples{
 t <- runif(100, 0, 10)
