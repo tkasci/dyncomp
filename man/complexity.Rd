@@ -39,6 +39,10 @@ A function to calculate the dynamic complexity of a series of observations, resu
 If TRUE, rescales the returned values to scale minimum and maximum. This is sometimes useful for graphical interpretation or plotting. Default: FALSE.
 }
 
+\item{partial}{
+If TRUE, calculates complexity values for incomplete time windows instead of generating NAs. Default: FALSE.
+}
+
 }
 
 \author{
@@ -57,5 +61,5 @@ lines(c, col = "red", lty = 4)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

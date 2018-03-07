@@ -1,6 +1,6 @@
 require(zoo) # for rollapply
 
-complexity <- function(x, scaleMin = min(x, na.rm = T), scaleMax = max(x, na.rm = T), width = 7, measure = "complexity", rescale = FALSE) {
+complexity <- function(x, scaleMin = min(x, na.rm = T), scaleMax = max(x, na.rm = T), width = 7, measure = "complexity", rescale = FALSE, partial = FALSE) {
 
 
 
@@ -41,8 +41,8 @@ adjust.to.scale <- function (x)
     D <- 1 - mean(div.diff) # If there were no deviations from the uniform distribution, this would be 0
     return(D)}
 
-  fluctuation <- rollapply(x, width = width, FUN = fluctDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA)
-  distribution <- rollapply(x, width = width, FUN = distDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA)
+  fluctuation <- rollapply(x, width = width, FUN = fluctDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = partial, fill = NA)
+  distribution <- rollapply(x, width = width, FUN = distDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = partial, fill = NA)
   complexity <- fluctuation * distribution
 
   if(rescale){
