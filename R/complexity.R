@@ -1,6 +1,6 @@
 require(zoo) # for rollapply
 
-complexity <- function(x, scaleMin = min(x, na.rm = T), scaleMax = max(x, na.rm = T), width = 7, measure = "complexity", rescale = FALSE, partial = FALSE) {
+complexity <- function(x, scaleMin = min(x, na.rm = T), scaleMax = max(x, na.rm = T), width = 7, measure = "complexity", rescale = FALSE) {
 
 
 
@@ -41,8 +41,8 @@ adjust.to.scale <- function (x)
     D <- 1 - mean(div.diff) # If there were no deviations from the uniform distribution, this would be 0
     return(D)}
 
-  fluctuation <- rollapply(x, width = width, FUN = fluctDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = partial, fill = NA)
-  distribution <- rollapply(x, width = width, FUN = distDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = partial, fill = NA)
+  fluctuation <- rollapply(x, width = width, FUN = fluctDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA)
+  distribution <- rollapply(x, width = width, FUN = distDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA)
   complexity <- fluctuation * distribution
 
   if(rescale){
@@ -54,4 +54,17 @@ adjust.to.scale <- function (x)
   if(measure == "distribution"){return(distribution)}
   if(measure == "fluctuation"){return(fluctuation)}
   if(measure == "complexity"){return(complexity)}
+}
+
+df.complexity <- function(x, startCol, endCol, scaleMin=min(x, na.rm=T), scaleMax = max(x, na.rm=T), width = 7, measure = "complexity", rescale = FALSE) {
+  if(!is.numeric(x[startCol:endCol])){return("One or more variables in the data frame are not numeric!")}
+  df.comp <- matrix(data = NA,
+                    nrow = nrow(x),
+                    ncol = ncol(x))
+  df.comp <- as.data.frame(df.comp)
+  colnames(df.comp) <- colnames(x)
+  for (i in startCol:endCol) {
+    df.comp[, i] <- complexity(x[, i], scaleMin, scaleMax, width, measure, rescale)
+  }
+  return(df.comp)
 }
