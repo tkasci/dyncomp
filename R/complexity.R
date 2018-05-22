@@ -55,3 +55,16 @@ adjust.to.scale <- function (x)
   if(measure == "fluctuation"){return(fluctuation)}
   if(measure == "complexity"){return(complexity)}
 }
+
+df.complexity <- function(x, startCol, endCol, scaleMin=min(x, na.rm=T), scaleMax = max(x, na.rm=T), width = 7, measure = "complexity", rescale = FALSE) {
+  if(!is.numeric(x[startCol:endCol])){return("One or more variables in the data frame are not numeric!")}
+  df.comp <- matrix(data = NA,
+                    nrow = nrow(x),
+                    ncol = ncol(x))
+  df.comp <- as.data.frame(df.comp)
+  colnames(df.comp) <- colnames(x)
+  for (i in startCol:endCol) {
+    df.comp[, i] <- complexity(x[, i], scaleMin, scaleMax, width, measure, rescale)
+  }
+  return(df.comp)
+}
