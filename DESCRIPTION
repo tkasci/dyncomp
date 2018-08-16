@@ -9,3 +9,4 @@ Description: While there are many well-established measures for identifying crit
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 6.0.1
+Suggests: testthat
