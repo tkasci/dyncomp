@@ -1,15 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 \name{df.complexity}
 \alias{df.complexity}
-=======
-\name{complexity}
-\alias{complexity}
->>>>>>> ef2d943070d1589c518ce7ca7d67536dbcf9d0ec
-=======
-\name{complexity}
-\alias{complexity}
->>>>>>> ef2d943070d1589c518ce7ca7d67536dbcf9d0ec
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Calculate dynamic complexity of multiple time series in a data frame
@@ -21,7 +12,7 @@ Calculates the dynamic complexity for every column in a data frame.
 
 }
 
-\usage{complexity(x, startCol, endCol, scaleMin, scaleMax, width = 7, measure = "complexity", rescale = FALSE)}
+\usage{df.complexity(x, startCol, endCol, scaleMin, scaleMax, width = 7, measure = "complexity", rescale = FALSE)}
 
 \arguments{
   \item{x}{

@@ -1,12 +1,15 @@
+# Dynamic Complexity Functions - Tim Kaiser, August 2018
+
+
 require(zoo) # for rollapply
 
 complexity <- function(x, scaleMin = min(x, na.rm = T), scaleMax = max(x, na.rm = T), width = 7, measure = "complexity", rescale = FALSE) {
 
 
 
-if(!is.numeric(x)){return("Please provide a numeric vector.")}
+if(!is.numeric(x)){stop("Please provide a numeric vector.")}
 
-# MSSD function taken from the psych library ----
+# RMSSD function taken from the psych library ----
   rmssd <- function (x){
     result <- sum(diff(x, lag = 1, na.rm = T)^2, na.rm = T) / (sum(!is.na(x)) - 1)
     return(sqrt(result))
@@ -35,14 +38,14 @@ adjust.to.scale <- function (x)
     uni.diff <- diff(uniform) # Calculate differences in hypothetical distribution
     emp.diff <- diff(empirical) # Calculate differences in observed distribution
     deviation <- uni.diff - emp.diff# Calculate deviation
-    dev.h <- deviation * ((sign(deviation) + 1)/2) # Apply a Heaviside step function to eliminate negatives
+    dev.h <- deviation * (sign(deviation )+1)/2 # Apply a Heaviside step function to eliminate negatives
     div.diff <- dev.h / uni.diff
     #print(normed) # debug
     D <- 1 - mean(div.diff) # If there were no deviations from the uniform distribution, this would be 0
     return(D)}
 
-  fluctuation <- rollapply(x, width = width, FUN = fluctDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA)
-  distribution <- rollapply(x, width = width, FUN = distDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA)
+  fluctuation <- rollapply(x, width = width, FUN = fluctDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA, align = "right")
+  distribution <- rollapply(x, width = width, FUN = distDegree, scaleMin = scaleMin, scaleMax = scaleMax, partial = F, fill = NA, align = "right")
   complexity <- fluctuation * distribution
 
   if(rescale){
@@ -57,7 +60,7 @@ adjust.to.scale <- function (x)
 }
 
 df.complexity <- function(x, startCol, endCol, scaleMin=min(x, na.rm=T), scaleMax = max(x, na.rm=T), width = 7, measure = "complexity", rescale = FALSE) {
-  if(!is.numeric(x[startCol:endCol])){return("One or more variables in the data frame are not numeric!")}
+  if(sum(sapply(x, is.numeric)) != ncol(x)) {return("One or more variables in the data frame are not numeric!")}
   df.comp <- matrix(data = NA,
                     nrow = nrow(x),
                     ncol = ncol(x))
